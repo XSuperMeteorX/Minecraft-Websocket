@@ -1,0 +1,6 @@
+setblock 0 10 0 diamond_block 0 replace
+setblock 1 11 1 diamond_block 0 replace
+setblock 1 11 -1 diamond_block 0 replace
+setblock -1 11 -1 diamond_block 0 replace
+setblock -1 11 1 diamond_block 0 replace
+setblock 0 20 0 redstone_block 0 replace
