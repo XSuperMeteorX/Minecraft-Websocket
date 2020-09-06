@@ -8,6 +8,10 @@ console.log("Please connect to 127.0.0.1:8080");
 
 var exec = require("child_process").exec
 
+var xyz = []
+
+get = false;
+
 wss.on("connection" , function connection(ws) {
 
  //客户端与服务器连接时执行的代码块
@@ -80,6 +84,7 @@ command("say me Connected!!");
 
  //客户端发送 JSON 到服务器时执行的代码块
  console.log(message);
+ 
  if (JSON.parse(message).body.eventName == "PlayerMessage") {
 
  var agent_command = JSON.parse(message).body.properties.Message;
@@ -115,6 +120,7 @@ command("say me Connected!!");
 			console.log('arf: readErr: ' + err)
 			command('§earf: readErr: ' + err)
 		} else {
+			command("say §eParsing file...")
 			command(setblock(data))
 		}
 		})
@@ -126,7 +132,36 @@ command("say me Connected!!");
 		command(d[k])
 	}
  }
-
+ 
+ 
+ if (JSON.parse(message).body.eventName == "PlayerMessage") {
+ 
+ let chatCmd = JSON.parse(message).body.properties.Message;
+ 
+ if (chatCmd.substring(0,3) == "get") {
+			command("testforblock ~ ~ ~ air ")
+			command("testforblock ~ ~ ~ air ")
+			command("testforblock ~ ~ ~ air ")
+			command("testforblock ~ ~ ~ air ")
+			command("testforblock ~ ~ ~ air ")
+			command("testforblock ~ ~ ~ air ")
+			get = true
+	}
+ }
+ 
+ if (get == true) {
+	if (JSON.parse(message).body.matches == true) {
+		xyz[0] = JSON.parse(message).body.position.x
+		xyz[1] = JSON.parse(message).body.position.y
+		xyz[2] = JSON.parse(message).body.position.z
+		command("title @s actionbar Position: " + xyz + "")
+		command("say Position: " + xyz + "")
+		get=false
+		
+	}
+ }
+ 
+ 
  });
 
 });
