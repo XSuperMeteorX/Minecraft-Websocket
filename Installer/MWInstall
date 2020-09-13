@@ -1,0 +1,24 @@
+#Author: Meteor
+
+echo "Minecraft-Websocket Installer\n"
+
+echo "    __  ____       __     __                    __        __ "
+echo "   /  |/  / |     / /__  / /_  _________  _____/ /_____  / /_"
+echo "  / /|_/ /| | /| / / _ \/ __ \/ ___/ __ \/ ___/ //_/ _ \/ __/"
+echo " / /  / / | |/ |/ /  __/ /_/ (__  ) /_/ / /__/ ,< /  __/ /_  "
+echo "/_/  /_/  |__/|__/\___/_.___/____/\____/\___/_/|_|\___/\__/  "
+echo "                                                             "
+
+echo "Installing..."
+
+sed -i 's@^\(deb.*stable main\)$@#\1\ndeb https://mirrors.tuna.tsinghua.edu.cn/termux stable main@'
+
+$PREFIX/etc/apt/sources.list&&apt update -y&&apt upgrade -y&&apt install wget nodejs git -y
+
+git clone https://github.com/XSuperMeteorX/Minecraft-Websocket.git
+
+cd Minecraft-Websocket
+
+echo -e "\033[1;32mWaiting...  wait for starting! \033[0m"
+
+node main
